@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliments for Shany</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f3f3f3;
+      background-image: url('https://cdn.pixabay.com/photo/2018/01/23/12/02/heart-3101306_1280.png'); /* Heart background */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      background-color: #ff6b6b;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #ff4747;
+    }
+    .compliment {
+      font-size: 24px;
+      color: #333;
+      margin-top: 40px;
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dear Shany, here's a compliment for you</h1>
+  <button id="generate-btn">Get a Compliment</button>
+  <div class="compliment" id="compliment-display">Click the button to get a compliment!</div>
+
+  <script>
+    const compliments = [
+  "You light up my world in ways I can't even put into words. Yours, Oz.",
+      "Every day with you feels like a beautiful gift. Yours, Oz.",
+      "Your laughter is the sweetest sound I've ever heard. Yours, Oz.",
+      "I am amazed by your kindness and the way you care for those around you. Yours, Oz.",
+      "Being with you makes everything better. Yours, Oz.",
+      "You are my greatest adventure. Yours, Oz.",
+      "Your smile can brighten even the darkest of days. Yours, Oz.",
+      "I’m so lucky to be the one you chose. Yours, Oz.",
+      "You make every moment with you unforgettable. Yours, Oz.",
+      "I admire your strength and resilience. Yours, Oz.",
+      "Your love makes me a better person. Yours, Oz.",
+      "You have the most beautiful heart. Yours, Oz.",
+      "Every day with you is a dream come true. Yours, Oz.",
+      "I can’t imagine life without your laughter. Yours, Oz.",
+      "You make the world a better place just by being in it. Yours, Oz.",
+      "You are my rock, always keeping me grounded. Yours, Oz.",
+      "I love how thoughtful and kind you are. Yours, Oz.",
+      "I admire how patient you are with everyone around you. Yours, Oz.",
+      "Your creativity never ceases to amaze me. Yours, Oz.",
+      "You make even the simplest moments feel magical. Yours, Oz.",
+      "Your passion for life inspires me every day. Yours, Oz.",
+      "You bring out the best in me. Yours, Oz.",
+      "I am so lucky to share my life with you. Yours, Oz.",
+      "You make my heart sing with joy. Yours, Oz.",
+      "You are the sunshine in my life. Yours, Oz.",
+      "Your beauty, inside and out, leaves me speechless. Yours, Oz.",
+      "I am always proud to call you mine. Yours, Oz.",
+      "Your hugs are my favorite place in the world. Yours, Oz.",
+      "Your smile brightens even the darkest of days. Yours, Oz.",
+      "I cherish every moment I spend with you. Yours, Oz.",
+      "You are the most wonderful person I have ever met. Yours, Oz.",
+      "I admire your strength and courage. Yours, Oz.",
+      "You are my favorite part of every day. Yours, Oz.",
+      "Your love fills my heart with so much joy. Yours, Oz.",
+      "I can't believe how lucky I am to have you. Yours, Oz.",
+      "You are perfect just the way you are. Yours, Oz.",
+      "I admire the way you handle challenges with grace. Yours, Oz.",
+      "Your intelligence is one of the things I admire most about you. Yours, Oz.",
+      "I love how we can talk about anything and everything. Yours, Oz.",
+      "You are the most important person in my life. Yours, Oz.",
+      "Every day with you feels like a blessing. Yours, Oz.",
+      "Your kindness has touched so many people’s lives. Yours, Oz.",
+      "You make my life so much brighter. Yours, Oz.",
+      "You inspire me to be the best version of myself. Yours, Oz.",
+      "I am so grateful for all the little things you do for me. Yours, Oz.",
+      "You make me smile like no one else can. Yours, Oz.",
+      "I love the way you see the world. Yours, Oz.",
+      "You make the ordinary feel extraordinary. Yours, Oz.",
+      "Your love is the best thing that ever happened to me. Yours, Oz.",
+      "I admire how you stay true to yourself. Yours, Oz.",
+      "You are the person I trust the most. Yours, Oz.",
+      "You have the most amazing sense of humor. Yours, Oz.",
+      "Your compassion for others is inspiring. Yours, Oz.",
+      "You are everything I ever wanted in a partner. Yours, Oz.",
+      "I love how much you care about our family. Yours, Oz.",
+      "You always know how to make me feel better. Yours, Oz.",
+      "You are a gift to everyone who knows you. Yours, Oz.",
+      "You have the most beautiful soul. Yours, Oz.",
+      "I love how thoughtful and considerate you are. Yours, Oz.",
+      "You always know how to make me smile. Yours, Oz.",
+      "Your positivity is contagious. Yours, Oz.",
+      "I love how adventurous you are. Yours, Oz.",
+      "You are the strongest person I know. Yours, Oz.",
+      "You are my biggest supporter, and I’m yours. Yours, Oz.",
+      "You are more beautiful than any sunrise. Yours, Oz.",
+      "You are my favorite person to be with. Yours, Oz.",
+      "You make the good times better and the tough times easier. Yours, Oz.",
+      "I am in awe of your kindness every day. Yours, Oz.",
+      "Your love makes me feel like I can do anything. Yours, Oz.",
+      "I love that we are building a life together. Yours, Oz.",
+      "You make me believe in true love every day. Yours, Oz.",
+      "Every moment with you is a treasure. Yours, Oz.",
+      "You are so incredibly thoughtful and generous. Yours, Oz.",
+      "I am thankful every day for you. Yours, Oz.",
+      "Your love is my greatest strength. Yours, Oz.",
+      "You are my home, my heart, my everything. Yours, Oz.",
+      "You are simply irreplaceable. Yours, Oz.",
+      "You have the most beautiful spirit I have ever known. Yours, Oz.",
+      "Your laughter is my favorite sound. Yours, Oz.",
+      "Your happiness is my greatest joy. Yours, Oz.",
+      "I admire your passion for life and learning. Yours, Oz.",
+      "You bring such peace and joy into my life. Yours, Oz.",
+      "You are a treasure, and I am so lucky to have you. Yours, Oz.",
+      "You are beautiful inside and out. Yours, Oz.",
+      "I am so grateful to have you in my life. Yours, Oz.",
+      "You are my forever and always. Yours, Oz.",
+      "You are the most amazing woman in the world. Yours, Oz.",
+      "I love how you make everyone feel special. Yours, Oz.",
+      "You are my reason for everything. Yours, Oz.",
+      "You are a blessing in my life. Yours, Oz.",
+      "I love how your heart is full of love and compassion. Yours, Oz.",
+      "Your love is the light of my life. Yours, Oz.",
+      "I admire how strong you are in tough times. Yours, Oz.",
+      "You are my dream come true. Yours, Oz.",
+      "You are the love of my life, now and forever. Yours, Oz.",
+      "Your kindness and compassion are unmatched. Yours, Oz.",
+      "I love how you care for our family with so much love. Yours, Oz.",
+      "You are the best partner I could ever ask for. Yours, Oz.",
+      "You make everything better just by being there. Yours, Oz.",
+      "Your love gives me strength and courage. Yours, Oz.",
+      "You are my inspiration every day. Yours, Oz.",
+      "I am in awe of your beauty, inside and out. Yours, Oz.",
+      "You have a heart of gold. Yours, Oz.",
+      "You are my one and only, forever and always. Yours, Oz.",
+      "Your love is the most precious gift I’ve ever received. Yours, Oz.",
+      "You make me feel like the luckiest person alive. Yours, Oz.",
+      "You are the epitome of grace and beauty. Yours, Oz.",
+      "I love how you always lift me up when I’m down. Yours, Oz.",
+      "You are my favorite person in the whole world. Yours, Oz.",
+      "Your love is my anchor in life’s storms. Yours, Oz.",
+      "You are my soulmate, and I love you more every day. Yours, Oz.",
+      "Your heart is as beautiful as your smile. Yours, Oz.",
+      "You are everything I ever dreamed of and more. Yours, Oz.",
+      "I am blessed to call you mine. Yours, Oz.",
+      "You make me laugh like no one else. Yours, Oz.",
+      "You are my better half in every way. Yours, Oz.",
+      "You are the love of my life, and I am so thankful for you. Yours, Oz.",
+      "I love how you make every day brighter. Yours, Oz.",
+      "You are my sunshine on a cloudy day. Yours, Oz.",
+      "Your love is the greatest gift I could ever receive. Yours, Oz.",
+      "You are the most loving, caring person I know. Yours, Oz.",
+      "You are my heart, my love, my life. Yours, Oz.",
+      "You are everything to me. Yours, Oz.",
+      "I am the luckiest person in the world to have you. Yours, Oz.",
+      "You are my reason for smiling every day. Yours, Oz.",
+      "Your love completes me in every way. Yours, Oz.",
+      "I love how you make life so much fun. Yours, Oz.",
+      "You are the most important person in my life. Yours, Oz.",
+      "You are my partner, my love, my best friend. Yours, Oz.",
+      "I love how much we laugh together. Yours, Oz.",
+      "You are the most special person in my life. Yours, Oz.",
+      "I love how you always know what I need. Yours, Oz.",
+      "Your love is a treasure I cherish every day. Yours, Oz.",
+      "You are my everything, and I love you more than words can say. Yours, Oz.",
+      "You are my heart, my soul, my one true love. Yours, Oz.",
+      "Your love fills my heart with so much joy. Yours, Oz.",
+      "You are the most amazing person I’ve ever known. Yours, Oz.",
+      "You are my greatest treasure. Yours, Oz.",
+      "I am so proud of the person you are. Yours, Oz.",
+      "Your love makes me feel like I can conquer the world. Yours, Oz.",
+      "You are my greatest source of joy and happiness. Yours, Oz.",
+      "You are the love of my life, and I will cherish you forever. Yours, Oz.",
+      "I love how you make even the ordinary feel extraordinary. Yours, Oz.",
+      "You are the most beautiful person I know, inside and out. Yours, Oz.",
+      "I admire your strength and resilience every day. Yours, Oz.",
+      "You are my heart and soul, and I love you with all of me. Yours, Oz.",
+      "You are the light of my life, and I am so grateful for you. Yours, Oz.",
+      "You are my one and only, and I love you more than anything. Yours, Oz.",
+      "Your love makes my heart full of joy and peace. Yours, Oz.",
+      "You are the best thing that ever happened to me. Yours, Oz.",
+      "I love how you make me feel so loved and cherished. Yours, Oz.",
+      "You are my world, and I love you more every day. Yours, Oz.",
+      "Your love is my greatest gift, and I will never take it for granted. Yours, Oz.",
+      "You are my partner, my love, my best friend, and I am so grateful for you. Yours, Oz."
+    ];
+
+    document.getElementById('generate-btn').addEventListener('click', function() {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      const randomCompliment = compliments[randomIndex];
+      document.getElementById('compliment-display').innerHTML = randomCompliment;
+    });
+  </script>
+
+</body>
+</html>
